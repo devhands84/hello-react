@@ -1,27 +1,24 @@
 import { Component } from 'react';
-//import ScrollBox from './ScrollBox';
-import IterationSample from './IterationSample';
+import LifeCycleSample from './LifeCycleSample';
+
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
 
 class App extends Component {
+  state = { color: '#000000' };
+
+  handleClick = () => {
+    this.setState({ color: getRandomColor() });
+  };
   render() {
-    return <IterationSample />;
+    return (
+      <div>
+        <button onClick={this.handleClick}>Random Color</button>
+        <LifeCycleSample color={this.state.color} />
+      </div>
+    );
   }
 }
-// class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <ScrollBox ref={(ref) => (this.ScrollBox = ref)} />
-//         <button
-//           onClick={() => {
-//             this.ScrollBox.scrollToBottom();
-//           }}
-//         >
-//           To bottom
-//         </button>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
